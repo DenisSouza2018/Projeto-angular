@@ -8,7 +8,7 @@ import { URL_API } from './app.api'
 @Injectable()
 export class OfertasService {
 
-    private url_api = 'http://localhost:3000/ofertas'
+    private url_api = 'http://localhost:3000'
 
     constructor(private http: Http){ }
 
@@ -17,7 +17,7 @@ export class OfertasService {
     public getOfertas(): Promise<Oferta[]> {
         // Executar uma requição http
         // Retornar um promise Pferta[]
-        return this.http.get(`${URL_API}?destaque=true`)
+        return this.http.get(`${URL_API}/ofertas?destaque=true`)
             .toPromise()
             .then((resposta: any) => resposta.json())
 
@@ -25,26 +25,44 @@ export class OfertasService {
     }
 
     public getOfertasPorCategoria(categoria: string) :Promise<Oferta[]>{
-        return this.http.get(`${this.url_api}?categoria=${categoria}`)
+        return this.http.get(`${this.url_api}/ofertas?categoria=${categoria}`)
         .toPromise()
         .then((resposta: any) => resposta.json())
     }
 
 
     public getOfertasPorDiversao(diversao: string) :Promise<Oferta[]>{
-        return this.http.get(`${this.url_api}?categoria=${diversao}`)
+        return this.http.get(`${this.url_api}/ofertas?categoria=${diversao}`)
         .toPromise()
         .then((resposta: any) => resposta.json())
     }
 
     public getOfertasPorId(id: number): Promise<Oferta>{
-        return this.http.get(`${this.url_api}?id=${id}`)
+        return this.http.get(`${this.url_api}/ofertas?id=${id}`)
         .toPromise()
         .then((resposta: any)=>{
             
             return resposta.json()[0]
             
         })
+    }
+
+    public getComoUsarOfertaPorId(id: number): Promise<string> {
+        return this.http.get(`${URL_API}/como-usar?id=${id}`)
+            .toPromise()
+            .then((resposta: any) =>{
+
+                return resposta.json()[0].descricao
+            })
+    }
+
+    public getOndeFicaOfertaPorId(id: number): Promise<string> {
+        return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+            .toPromise()
+            .then((resposta: any) =>{
+                
+                return resposta.json()[0].descricao
+            })
     }
 
 }
