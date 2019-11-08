@@ -11,9 +11,9 @@ import { Pedido } from '../shared/pedido.model'
   providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
-
-  @ViewChild('formulario') public f: NgForm
-
+  
+  @ViewChild('formulario') public formulario: NgForm
+  
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra():void{
-    console.log(this.f);
+    console.log(this.formulario);
 
   }
 

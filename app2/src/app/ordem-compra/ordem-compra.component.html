@@ -63,7 +63,10 @@
       <br />
 
       
+      <pre>Valido = {{formulario.valid | json}}</pre>
+      <pre>Inválido ={{formulario.invalid | json}}</pre>
       <pre>{{formulario.value | json}}</pre>
+
       <h5>Dados de entrega</h5>
       <hr />
 
@@ -75,9 +78,10 @@
             class="form-control is-invalid" 
             placeholder="Endereço" 
             autocomplete="off" 
-            minlength="5" 
             required
             name="endereco"
+            minlength="3"
+            maxlength="120"
             ngModel
           >
           <small class="form-text text-danger">Endereço inválido</small>
@@ -89,8 +93,9 @@
             class="form-control is-valid" 
             placeholder="Número" 
             autocomplete="off" 
-            minlength="1"
             required
+            minlength="1"
+            maxlength="20"
             name="numero"
             ngModel
           >
@@ -105,6 +110,7 @@
             autocomplete="off"
             name="complemento"
             ngModel
+            required
           >
         </div>
 
